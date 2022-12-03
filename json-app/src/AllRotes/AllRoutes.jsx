@@ -13,7 +13,6 @@ export function AllRoutes() {
       <Route
         path="/"
         element={
-
           /* 
           --> Making homw to private if user is not login so he is not able to visit home page
               instead of home user will be redirected to  Login page 
@@ -25,9 +24,23 @@ export function AllRoutes() {
         }
       />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/singleproduct" element={<SingleProduct />} />
+      <Route
+        path="/singleproduct"
+        element={
+          <PrivateRoute>
+            <SingleProduct />
+          </PrivateRoute>
+        }
+      />
       <Route path="/login" element={<Login />} />
-      <Route path="/product" element={<Product />} />
+      <Route
+        path="/product"
+        element={
+          <PrivateRoute>
+            <Product />
+          </PrivateRoute>
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
