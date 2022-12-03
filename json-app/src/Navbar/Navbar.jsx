@@ -15,18 +15,18 @@ export function Navabr() {
         display: "flex",
         justifyContent: "space-between",
         padding: "1rem",
-        width:'85%',
-        margin:'auto'
+        width: "85%",
+        margin: "auto",
       }}
       className="Navbar"
     >
       {links.map((el) => {
         return (
           <NavLink
+            key={el.text}
             style={({ isActive }) => {
               return isActive
                 ? {
-                    
                     border: "1px solid black",
                     padding: "0.4rem",
                     borderRadius: "10px",
