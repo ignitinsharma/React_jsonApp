@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import {Link} from "react-router-dom"
 
 const Product = () => {
   const [data, setdata] = useState([]);
@@ -43,6 +44,12 @@ const Product = () => {
             <h3>Title: {el.title}</h3>
             <p>Category: {el.category}</p>
             <h4>Price: {el.price}</h4>
+
+            {/* 
+            --> So this will redirected to that Particular user id
+                and then we will show that product details in brief...
+            */}
+            <Link to={`/products/${el.id}`}>More Details</Link>
           </div>
         );
       })}
