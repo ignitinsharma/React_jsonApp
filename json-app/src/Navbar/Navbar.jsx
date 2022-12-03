@@ -2,10 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 
 const links = [
   { to: "/", text: "Home" },
-  { to: "/login", text: "Login" },
   { to: "/product", text: "Product" },
   { to: "/singleproduct", text: "Singleproduct" },
   { to: "/contact", text: "Contact" },
+  { to: "/login", text: "Login" },
 ];
 
 export function Navabr() {
