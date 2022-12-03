@@ -6,11 +6,11 @@ const PrivateRoute = ({ children }) => {
   const { isAuth, handleToggle } = useContext(AuthContext);
   /* 
     --> If user isn't logged in so Send user to login page
-
     */
   if (isAuth==false) {
     return <Navigate to="/login" />;
   }
+  
   return children;
 };
 
