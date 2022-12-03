@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [isAuth, setisAuth] = useState(false)
 
-    function handlToggle() {
+    function handleToggle() {
         setisAuth(!isAuth)
     }
 
