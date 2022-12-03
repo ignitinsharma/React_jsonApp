@@ -5,15 +5,29 @@ import Login from "../Pages/Login";
 import NotFound from "../Pages/NotFound";
 import Product from "../Pages/Product";
 import SingleProduct from "../Pages/SingleProduct";
+import PrivateRoute from "./PrivateRoute";
 
 export function AllRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+
+          /* 
+          --> Making homw to private if user is not login so he is not able to visit home page
+              instead of home user will be redirected to  Login page 
+          */
+
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
       <Route path="/contact" element={<Contact />} />
       <Route path="/singleproduct" element={<SingleProduct />} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/product" element={<Product/>} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/product" element={<Product />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

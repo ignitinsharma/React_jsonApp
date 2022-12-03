@@ -15,6 +15,8 @@ export function Navabr() {
         display: "flex",
         justifyContent: "space-between",
         padding: "1rem",
+        width:'85%',
+        margin:'auto'
       }}
       className="Navbar"
     >
@@ -24,13 +26,15 @@ export function Navabr() {
             style={({ isActive }) => {
               return isActive
                 ? {
+                    
                     border: "1px solid black",
                     padding: "0.4rem",
                     borderRadius: "10px",
                     transition: "0.7s",
                     color: "teal",
+                    textDecoration: "none",
                   }
-                : { color: "black" };
+                : { color: "black", textDecoration: "none" };
             }}
             to={el.to}
           >
