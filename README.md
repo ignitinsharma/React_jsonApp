@@ -1,8 +1,6 @@
 ## Concept used in App are
 
-- setup JSON server locally
-
-- installed a new react project using car
+- Using JSON server Api
 
 - install react-router-dom
 
