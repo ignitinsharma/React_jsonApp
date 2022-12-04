@@ -12,10 +12,11 @@ const Product = () => {
   const [searchParams, setseachParams] = useSearchParams();
   const [data, setdata] = useState([]);
   const [page, setpage] = useState(1);
+  const [orderPrice, setOrderPrice] = useState("");
 
   function fetchdata() {
     fetch(
-      `https://backendjson-production.up.railway.app/api/products?_page=${page}&_limit=4`
+      `https://backendjson-production.up.railway.app/api/products?_page=${page}&_limit=4&_sort=price&_order=${orderPrice}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -31,18 +32,23 @@ const Product = () => {
     --> So here we are simply taking page value and then
         then setting in...
     */
-    const param = { page };
+    const param = { page, orderPrice };
     setseachParams(param);
-  }, [page]);
+  }, [page, orderPrice]);
 
   return (
     <>
+      <button onClick={()=>setOrderPrice("asc")}>Price Ascending</button>
+      <button onClick={()=>setOrderPrice("desc")}>Price Descending</button>
+      <button onClick={()=>setOrderPrice("")}>Price Reset</button>
+      <br />
+      <br />
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(2,1fr)",
           gap: "10px",
-          width: "90%",
+          width: "80%",
           margin: "auto",
         }}
       >
@@ -73,6 +79,7 @@ const Product = () => {
             </div>
           );
         })}
+      </div>
         <div
           style={{
             display: "flex",
@@ -81,11 +88,12 @@ const Product = () => {
             margin: "auto",
           }}
         >
-          <button disabled={page===1} onClick={()=>setpage(page-1)}>Pre</button>
+          <button disabled={page === 1} onClick={() => setpage(page - 1)}>
+            Pre
+          </button>
           <button>{page}</button>
-          <button onClick={()=>setpage(page+1)}>Next</button>
+          <button onClick={() => setpage(page + 1)}>Next</button>
         </div>
-      </div>
     </>
   );
 };
