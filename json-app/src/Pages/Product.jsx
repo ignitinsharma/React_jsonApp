@@ -13,10 +13,11 @@ const Product = () => {
   const [data, setdata] = useState([]);
   const [page, setpage] = useState(1);
   const [orderPrice, setOrderPrice] = useState("");
+  const [filter, setfilter] = useState("");
 
   function fetchdata() {
     fetch(
-      `https://backendjson-production.up.railway.app/api/products?_page=${page}&_limit=4&_sort=price&_order=${orderPrice}`
+      `https://backendjson-production.up.railway.app/api/products?_page=${page}&_limit=4&_sort=price&_order=${orderPrice}&category=${filter}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -28,19 +29,30 @@ const Product = () => {
   useEffect(() => {
     fetchdata();
 
+
     /* 
     --> So here we are simply taking page value and then
         then setting in...
     */
-    const param = { page, orderPrice };
+    const param = { page, orderPrice};
     setseachParams(param);
-  }, [page, orderPrice]);
+  }, [page, orderPrice, filter]);
 
   return (
     <>
-      <button onClick={()=>setOrderPrice("asc")}>Price Ascending</button>
-      <button onClick={()=>setOrderPrice("desc")}>Price Descending</button>
-      <button onClick={()=>setOrderPrice("")}>Price Reset</button>
+      <button onClick={() => setOrderPrice("asc")}>Price Ascending</button>
+      <button onClick={() => setOrderPrice("desc")}>Price Descending</button>
+      <button onClick={() => setOrderPrice("")}>Price Reset</button>
+      <br />
+      <br />
+      <button onClick={() => setfilter("men's clothing")}>
+        Filter by Men Clothing
+      </button>
+      <button onClick={() => setfilter("electronics")}>
+        Filter by Electronics
+      </button>
+      <button onClick={() => setfilter("jewelery")}>Filter by Jewelery</button>
+      <button onClick={() => setfilter("")}>Reset FIlter</button>
       <br />
       <br />
       <div
@@ -80,20 +92,20 @@ const Product = () => {
           );
         })}
       </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "2rem",
-            margin: "auto",
-          }}
-        >
-          <button disabled={page === 1} onClick={() => setpage(page - 1)}>
-            Pre
-          </button>
-          <button>{page}</button>
-          <button onClick={() => setpage(page + 1)}>Next</button>
-        </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "2rem",
+          margin: "auto",
+        }}
+      >
+        <button disabled={page === 1} onClick={() => setpage(page - 1)}>
+          Pre
+        </button>
+        <button>{page}</button>
+        <button onClick={() => setpage(page + 1)}>Next</button>
+      </div>
     </>
   );
 };
